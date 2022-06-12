@@ -256,6 +256,7 @@ class Agent:
             path_directions.append(min_move)
             curr_puzzle = min_neighbor
             min_neighbor, min_move = curr_puzzle.get_min_neighbor(goal)
+            Agent.num_nodes_explored += 1
 
         return path_directions
 
