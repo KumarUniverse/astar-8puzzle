@@ -35,7 +35,6 @@ class Puzzle:
 
     def moves(self):
         """Return a list of possible moves given the current configuration."""
-        # YOU FILL THIS IN
         move_list = []
         blank_tile_loc = self.find_coord_of_num(self.grid, ' ')
         for direction in Puzzle.possible_directions:
@@ -49,7 +48,6 @@ class Puzzle:
     
     def neighbor(self, move):
         """Return a Puzzle instance like this one but with one move made."""
-        # YOU FILL THIS IN
         new_grid = copy.deepcopy(self.grid)
         blank_tile_loc = self.find_coord_of_num(self.grid, ' ')
         move_coord = Puzzle.dirs_to_moves[move]
@@ -67,7 +65,6 @@ class Puzzle:
 
     def h(self, goal):
         """Compute the Manhattan distance heuristic from this instance to the goal."""
-        # YOU FILL THIS IN
         h_value = 0
 
         for i in range(self.grid_size):
@@ -124,7 +121,7 @@ class Puzzle:
 
 
 class Agent:
-    """Knows how to solve a sliding-block puzzle with A* search."""
+    """Solves a sliding-block puzzle with A* search, random walk and hill climbing."""
     num_nodes_explored = 0
 
     class Node():
@@ -162,14 +159,13 @@ class Agent:
     
     def astar(self, puzzle, goal):
         """Return a list of moves to get the puzzle to match the goal."""
-        # YOU FILL THIS IN
         # Use heapq to implement a priority queue.
         root = Agent.Node(puzzle.find_coord_of_num(puzzle.grid, ' '))
         node = None
         finished = set()  # to keep track of puzzle arrangements already visited.
         finished.add(puzzle)
         frontier = []  # priority queue.
-        # ^^ Puzzles arrangements with lower cost go to the front of the queue.
+        # ^^Puzzle arrangements with lower cost go to the front of the queue.
         puzzle_f = puzzle.h(goal)  # total cost of the puzzle.
         heapq.heappush(frontier, (puzzle_f, root, puzzle))
         Agent.num_nodes_explored = 0  # reset value when starting new search.
@@ -281,7 +277,7 @@ def main():
     # Measuring runtime performance of algorithms:
     # num_runs = 10000
 
-    # Astar search:
+    # A* search:
     # astar_total_time = 0
     # for i in range(num_runs):
     #     start_time = time.time()
